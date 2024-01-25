@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.container + .container {
+  margin-top: 2.6rem;
+}
+
+.container > img {
+  width: 5rem;
+  height: 5rem;
+
+  border-radius: 5px;
+}
+
+.box {
+  flex: 1;
+}
+
+.commentBox {
+  background-color: var(--gray-700);
+  border-radius: 8px;
+  padding: 1.6rem 1.6rem 2.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.commentBox p {
+  font-size: 1.4rem;
+  color: var(--gray-300);
+  line-height: 1.6;
+}
+
+.commentAuthorTime {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.commentAuthorTime button {
+  background: none;
+  cursor: pointer;
+  color: var(--gray-400);
+  line-height: 0;
+
+  transition: color 0.1s;
+}
+
+.commentAuthorTime button:hover {
+  color: var(--red-400);
+}
+
+.commentAuthor {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.6;
+}
+
+.commentAuthor strong {
+  font-size: 1.4rem;
+}
+
+.commentAuthor time {
+  font-size: 1.2rem;
+  color: var(--gray-400);
+}
+
+.bntLike {
+  display: flex;
+  align-items: center;
+
+  background: none;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gray-400);
+
+  line-height: 0;
+
+  cursor: pointer;
+
+  transition: color 0.1s;
+}
+
+.bntLike svg {
+  margin-right: 1rem;
+}
+
+.bntLike span::before {
+  content: '\2022';
+  padding: 0 0.5rem;
+}
+
+.bntLike:hover {
+  color: var(--green-500);
+}

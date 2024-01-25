@@ -43,7 +43,7 @@
   font-size: 1.4rem;
   color: var(--gray-400);
 }
-footer {
+.buttonEdit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +53,7 @@ footer {
   border-top: 1px solid var(--gray-600);
 }
 
-footer a {
+.buttonEdit a {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -71,7 +71,7 @@ footer a {
   transition: color 0.1s, background-color 0.1s;
 }
 
-footer a:hover {
+.buttonEdit a:hover {
   background-color: var(--green-500);
   color: var(--white);
 }
