@@ -1,6 +1,6 @@
-import { Avatar } from '../Avatar';
-import styles from './Aside.module.css';
-import { PencilSimpleLine } from 'phosphor-react';
+import { PencilSimpleLine } from "phosphor-react";
+import { Avatar } from "../Avatar";
+import styles from "./Aside.module.css";
 
 export function Aside() {
   return (
@@ -9,7 +9,7 @@ export function Aside() {
       <div className={styles.profile}>
         <Avatar hasBorder src="https:github.com/vctrhugoop.png" />
         <strong>Victor Oliveira</strong>
-        <span>Software Engineer</span>
+        <span>CEO @Awesome Software</span>
       </div>
       <footer className={styles.buttonEdit}>
         <a href="#">
