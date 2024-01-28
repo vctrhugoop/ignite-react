@@ -5,6 +5,7 @@ import styles from "./Comment.module.css";
 
 export function Comment({ content, onDeleteComment }) {
   const [userName, setUserName] = useState("");
+  const [likeCount, setLikeCount] = useState(0);
 
   async function userNameRandom() {
     const response = await fetch("https://random-data-api.com/api/v2/users");
@@ -20,6 +21,12 @@ export function Comment({ content, onDeleteComment }) {
 
   function handleDeleteComment() {
     onDeleteComment(content);
+  }
+
+  function handleLikeComment() {
+    setLikeCount((state) => {
+      return state + 1;
+    });
   }
 
   return (
@@ -38,9 +45,9 @@ export function Comment({ content, onDeleteComment }) {
           </div>
           <p>{content}</p>
         </div>
-        <button className={styles.bntLike}>
+        <button className={styles.bntLike} onClick={handleLikeComment}>
           <ThumbsUp size={20} />
-          Aplaudir<span>20</span>
+          Aplaudir<span>{likeCount}</span>
         </button>
       </div>
     </div>
