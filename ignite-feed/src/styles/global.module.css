@@ -17,7 +17,7 @@
   --red-400: #f75a68;
 }
 
-:focus {
+textarea:focus {
   outline: transparent;
   box-shadow: 0 0 0 2px var(--green-500);
 }
@@ -40,7 +40,7 @@ body,
 input,
 textarea,
 button {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   moz-osx-font-smoothing: grayscale;
 }
