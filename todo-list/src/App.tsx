@@ -1,8 +1,24 @@
-import { PlusCircle } from "lucide-react";
+import { ClipboardList, PlusCircle } from "lucide-react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import logoImage from "./assets/rocket.svg";
 import { Tasks } from "./components/Tasks";
 
 export function App() {
+  const [value, setValue] = useState<string>("");
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  function handleTasks(event: ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
+  }
+
+  function handleNewTasks(event: FormEvent) {
+    event.preventDefault();
+
+    setTasks([...tasks, value]);
+  }
+
+  let taskCount = tasks.length;
+
   return (
     <div className="min-h-screen bg-zinc-900">
       <header className="h-[200px] bg-zinc-950">
@@ -14,11 +30,16 @@ export function App() {
         </div>
       </header>
       <main className="mx-auto max-w-3xl">
-        <form className="mt-[-30px] flex w-full gap-2">
+        <form
+          className="mt-[-30px] flex w-full gap-2"
+          onSubmit={handleNewTasks}
+        >
           <label htmlFor="createTask" className="sr-only">
             Adicione uma nova tafera
           </label>
           <input
+            value={value}
+            onChange={handleTasks}
             type="text"
             name="createTask"
             placeholder="Adicione uma nova tarefa"
@@ -36,18 +57,29 @@ export function App() {
           <strong className="flex items-center gap-2 text-sky-500">
             Tarefas criadas
             <span className="rounded-full bg-zinc-700 px-2 py-[2px] text-xs text-zinc-300">
-              2
+              {tasks.length}
             </span>
           </strong>
           <strong className="flex items-center gap-2 text-indigo-500">
             Concluídas
             <span className="rounded-full bg-zinc-700 px-2 py-[2px]  text-xs text-zinc-300">
-              0 de 2
+              {`0 de ${tasks.length}`}
             </span>
           </strong>
         </section>
-        <Tasks />
-        <Tasks />
+        {taskCount > 0 ? (
+          <ul>
+            {tasks.map((task) => (
+              <Tasks key={task} content={task} />
+            ))}
+          </ul>
+        ) : (
+          <div className="flex flex-col items-center justify-center border-t border-zinc-800 py-16 text-zinc-600">
+            <ClipboardList size={56} className="mb-4" />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <span>Crie tarefas e organize seus itens a fazer</span>
+          </div>
+        )}
       </main>
     </div>
   );
