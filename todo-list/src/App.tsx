@@ -3,9 +3,15 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import logoImage from "./assets/rocket.svg";
 import { Tasks } from "./components/Tasks";
 
+type task = {
+  id: string;
+  content: string;
+  isCompleted: boolean;
+};
+
 export function App() {
   const [value, setValue] = useState<string>("");
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState(Array<task>);
 
   function handleTasks(event: ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
@@ -14,12 +20,43 @@ export function App() {
   function handleNewTasks(event: FormEvent) {
     event.preventDefault();
 
-    setTasks([...tasks, value]);
+    if (value === "") return;
+
+    const newTask = {
+      id: crypto.randomUUID(),
+      content: value,
+      isCompleted: false,
+    };
+
+    setTasks([...tasks, newTask]);
 
     setValue("");
   }
 
   let taskCount = tasks.length;
+
+  function deleteTask(taskId: string) {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+  }
+
+  function updateTask(taskId: string) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          isCompleted: !task.isCompleted,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
+
+  const completedTasks = tasks.reduce((acc, task) => {
+    if (task.isCompleted) return acc + 1;
+    return acc;
+  }, 0);
 
   return (
     <div className="min-h-screen bg-zinc-900">
@@ -65,14 +102,21 @@ export function App() {
           <strong className="flex items-center gap-2 text-indigo-500">
             Concluídas
             <span className="rounded-full bg-zinc-700 px-2 py-[2px]  text-xs text-zinc-300">
-              {`0 de ${tasks.length}`}
+              {`${completedTasks} de ${tasks.length}`}
             </span>
           </strong>
         </section>
         {taskCount > 0 ? (
           <ul>
             {tasks.map((task) => (
-              <Tasks key={task} content={task} />
+              <Tasks
+                key={task.id}
+                id={task.id}
+                content={task.content}
+                isCompleted={task.isCompleted}
+                onUpdateTask={updateTask}
+                onDeleteTask={deleteTask}
+              />
             ))}
           </ul>
         ) : (
