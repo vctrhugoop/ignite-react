@@ -15,6 +15,8 @@ export function App() {
     event.preventDefault();
 
     setTasks([...tasks, value]);
+
+    setValue("");
   }
 
   let taskCount = tasks.length;
