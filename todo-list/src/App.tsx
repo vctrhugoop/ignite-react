@@ -70,7 +70,7 @@ export function App() {
       </header>
       <main className="mx-auto max-w-3xl">
         <form
-          className="mt-[-30px] flex w-full gap-2"
+          className="mt-[-30px] flex w-full gap-2 px-3"
           onSubmit={handleNewTasks}
         >
           <label htmlFor="createTask" className="sr-only">
@@ -92,7 +92,7 @@ export function App() {
             <PlusCircle size={16} strokeWidth={2.5} />
           </button>
         </form>
-        <section className="mb-6 mt-16 flex justify-between text-sm">
+        <section className="mb-6 mt-16 flex justify-between px-3 text-sm">
           <strong className="flex items-center gap-2 text-sky-500">
             Tarefas criadas
             <span className="rounded-full bg-zinc-700 px-2 py-[2px] text-xs text-zinc-300">
@@ -107,7 +107,7 @@ export function App() {
           </strong>
         </section>
         {taskCount > 0 ? (
-          <ul>
+          <ul className="px-3">
             {tasks.map((task) => (
               <Tasks
                 key={task.id}
