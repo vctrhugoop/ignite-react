@@ -11,7 +11,15 @@ type task = {
 
 export function App() {
   const [value, setValue] = useState<string>("");
-  const [tasks, setTasks] = useState(Array<task>);
+  const [tasks, setTasks] = useState<task[]>(() => {
+    const tasksOnStorege = localStorage.getItem("tasks");
+
+    if (tasksOnStorege) {
+      return JSON.parse(tasksOnStorege);
+    }
+
+    return [];
+  });
 
   function handleTasks(event: ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
@@ -28,9 +36,13 @@ export function App() {
       isCompleted: false,
     };
 
-    setTasks([...tasks, newTask]);
+    const tasksArray = [...tasks, newTask];
+
+    setTasks(tasksArray);
 
     setValue("");
+
+    localStorage.setItem("tasks", JSON.stringify(tasksArray));
   }
 
   let taskCount = tasks.length;
@@ -38,6 +50,8 @@ export function App() {
   function deleteTask(taskId: string) {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+
+    localStorage.setItem("tasks", JSON.stringify(updateTask));
   }
 
   function updateTask(taskId: string) {

@@ -33,7 +33,7 @@ export function Tasks({
     >
       <button
         onClick={handleUpdateTask}
-        className="mt-1  rounded-full text-sky-500 hover:bg-sky-400/10 hover:text-sky-400"
+        className="mt-1 rounded-full text-sky-500 hover:bg-sky-400/10 hover:text-sky-400"
       >
         {isCompleted ? (
           <div className="flex size-4 items-center justify-center rounded-full bg-indigo-600 text-zinc-50 hover:bg-indigo-500">
