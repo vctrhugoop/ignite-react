@@ -37,7 +37,7 @@ export function Tasks({
       >
         {isCompleted ? (
           <div className="flex size-4 items-center justify-center rounded-full bg-indigo-600 text-zinc-50 hover:bg-indigo-500">
-            <Check size={14} />
+            <Check size={12} />
           </div>
         ) : (
           <div className=" flex size-4 items-center justify-center rounded-full border border-sky-500 bg-transparent hover:bg-sky-400/10 hover:text-sky-400"></div>
